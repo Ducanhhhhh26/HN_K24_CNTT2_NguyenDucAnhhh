@@ -20,19 +20,19 @@ public class TaskItemValidator implements Validator {
     public void validate(Object target, Errors errors) {
         TaskItem task = (TaskItem) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "NotEmpty.taskItem.title", "Title must not be empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "NotEmpty.taskItem.title", "Tên không được để trống");
         if (task.getTitle() != null && task.getTitle().trim().length() > 0 && task.getTitle().trim().length() < 5) {
-            errors.rejectValue("title", "Size.taskItem.title", "Title must be at least 5 characters");
+            errors.rejectValue("title", "Size.taskItem.title", "Tên phải có ít nhất 5 ký tự");
         }
 
         if (task.getDeadline() == null) {
-            errors.rejectValue("deadline", "NotNull.taskItem.deadline", "Deadline is required");
+            errors.rejectValue("deadline", "NotNull.taskItem.deadline", "Deadline bắt buộc phải có");
         } else if (!task.getDeadline().isAfter(LocalDate.now())) {
-            errors.rejectValue("deadline", "Future.taskItem.deadline", "Deadline must be in the future");
+            errors.rejectValue("deadline", "Future.taskItem.deadline", "Deadline phải là ngày trong tương lai");
         }
 
         if (task.getPriority() == null || !task.getPriority().matches("^(HIGH|MEDIUM|LOW)$")) {
-            errors.rejectValue("priority", "Pattern.taskItem.priority", "Priority must be HIGH, MEDIUM, or LOW");
+            errors.rejectValue("priority", "Pattern.taskItem.priority", "Priority phải là HIGH, MEDIUM hoặc LOW");
         }
     }
 }

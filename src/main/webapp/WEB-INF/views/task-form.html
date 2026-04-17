@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="mb-4 text-center">Task Form</h1>
+            <h1 class="mb-4 text-center">Form thêm task mới</h1>
             <div class="card shadow-sm">
                 <div class="card-body">
                     <form th:action="@{/tasks}" th:object="${taskItem}" method="post">
@@ -18,7 +18,7 @@
                             <input type="text" th:field="*{id}" class="form-control" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Title:</label>
+                            <label class="form-label">Tên:</label>
                             <input type="text" th:field="*{title}" class="form-control" th:classappend="${#fields.hasErrors('title')} ? 'is-invalid' : ''" />
                             <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback"></div>
                         </div>
@@ -28,7 +28,7 @@
                             <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}" class="invalid-feedback"></div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Priority:</label>
+                            <label class="form-label">Độ ưu tiên:</label>
                             <select th:field="*{priority}" class="form-select" th:classappend="${#fields.hasErrors('priority')} ? 'is-invalid' : ''">
                                 <option value="">--Select--</option>
                                 <option value="HIGH">HIGH</option>
